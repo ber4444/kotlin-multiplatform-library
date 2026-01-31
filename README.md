@@ -11,7 +11,7 @@ In 2026, the developer experience is excellent, e.g. I can set breakpoints withi
 
 ## KMP notes
 
- - notable libraries you can use in `commonMain`: [ViewModel](https://kotlinlang.org/docs/multiplatform/compose-viewmodel.html), [Nav3](https://kotlinlang.org/docs/multiplatform/compose-navigation-3.html), Ktor, Kotlinx.serialization, Apollo, SQLDelight, Kermit (logging), Kotlinx-datetime, Multiplatform-settings
+ - notable libraries you can use in `commonMain`: [Koin](https://kotlinlang.org/docs/multiplatform/multiplatform-connect-to-apis.html#dependency-injection-framework), [ViewModel](https://kotlinlang.org/docs/multiplatform/compose-viewmodel.html), [Nav3](https://kotlinlang.org/docs/multiplatform/compose-navigation-3.html), Ktor, Kotlinx.serialization, Apollo, SQLDelight, Kermit (logging), Kotlinx-datetime, Multiplatform-settings
  - other KMP libs are at https://klibs.io/
  - any resources can go into `commonMain->composeResources`, e.g. vector drawables, translated strings, fonts
  - make sure you turn off configuration cache for release publishing
