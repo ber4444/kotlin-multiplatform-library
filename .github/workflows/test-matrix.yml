@@ -1,0 +1,47 @@
+name: Test Matrix
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Android unit tests
+            os: ubuntu-latest
+            gradleTask: :library:androidUnitTest
+          - name: JVM tests
+            os: ubuntu-latest
+            gradleTask: :library:jvmTest
+          - name: Wasm JS tests
+            os: ubuntu-latest
+            gradleTask: :library:wasmJsTest
+          - name: iOS x64 tests
+            os: macos-13
+            gradleTask: :library:iosX64Test
+          - name: iOS simulator Arm64 tests
+            os: macos-latest
+            gradleTask: :library:iosSimulatorArm64Test
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Run tests
+        run: ./gradlew ${{ matrix.gradleTask }}
